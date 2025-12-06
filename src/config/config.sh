@@ -1,4 +1,8 @@
 #!/bin/bash
+# shellcheck disable=SC1091
 
-./findValues.sh
-./functions.sh
+./config/createFiles.sh
+./config/findValues.sh
+./config/createAllJsonConfig.sh
+
+./config/menu.sh
