@@ -6,7 +6,7 @@ Script de configuração para distros linux e baseadas em linux.
 cd src
 ```
 
-- Dar permissão para execução do script: \[Linux Mint, Ubuntu, ]
+- Dar permissão para execução do script:
 ```
 chmod +x ./main.sh
 ```
@@ -15,3 +15,8 @@ chmod +x ./main.sh
 ```
 ./main.sh
 ```
+
+# Feats
+- Portabilidade dos seus pacotes ja instalados para outra iso.
+- Pack de apps .deb | .appImage | 
+- Instalação e configuração de terminal. oh my zsh | Ghostty  | 
