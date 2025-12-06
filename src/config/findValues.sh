@@ -1,54 +1,58 @@
-#! /bin/bash
+#!/bin/bash
 
 # shellcheck disable=SC1091
 # shellcheck disable=SC2153
+# shellcheck disable=SC2129
+
 source /etc/os-release
 
 get_pktmanager(){
-    echo "# Variavel de ambiente temporaria" >> .env
-
+    
     if command apt --version >/dev/null 2>&1; then
         echo "apt"
-        echo "pktmanager=apt" >> .env
+        echo "pktmanager=apt" >> ./config/.env
         
     elif command pacman --version >/dev/null 2>&1; then
         echo "pacman"
-        echo "pktmanager=pacman" >> .env
+        echo "pktmanager=pacman" >> ./config/.env
 
     elif command brew --version >/dev/null 2>&1; then
         echo "brew"
-        echo "pktmanager=brew" >> .env
+        echo "pktmanager=brew" >> ./config/.env
 
     elif command apk --version >/dev/null 2>&1; then
         echo "apk"
-        echo "pktmanager=apk" >> .env
+        echo "pktmanager=apk" >> ./config/.env
 
     elif command dnf --version >/dev/null 2>&1; then
         echo "dnf"
-        echo "pktmanager=dnf" >> .env
+        echo "pktmanager=dnf" >> ./config/.env
 
     else
         echo "gerenciador de pacotes não encontrado!"
     fi
 }
 
-values=(user pktmanager distro distroId)
-
-user=$USER
+# Obtendo valores de ambiente
+user="$USER"
 pktmanager="$(get_pktmanager)"
-distro=$NAME
-id=$ID
+distrocorrigida="${NAME// /}"
+id="$ID"
 
-values[0]=$user, values[1]=$pktmanager, values[2]=$distro, values[3]=$id
+# Limpando .env antes de escrever
+# shellcheck disable=SC2188
+> ./config/.env
 
-echo -e "[log] Valores de ambiente:\nUser:${values[0]}\nGerenciador_pacotes:${values[1]}\nDistro:${values[2]}\nId_distro:${values[3]}"
+# Gravando valores no .env
+{
+    echo "user=$user"
+    echo "pktmanager=$pktmanager"
+    echo "distro=$distrocorrigida"
+    echo "id=$id"
+    echo "uploadrepository=github_repository"
+    echo "version=v0.0.1"
+} >> ./config/.env
 
-echo "user=$user" >> .env
 
-distrocorrigida="${distro// /}"
-echo "distro=$distrocorrigida" >> .env
-echo "id=$id" >> .env
-
-#Versao no .json
 
 
