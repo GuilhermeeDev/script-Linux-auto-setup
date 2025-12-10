@@ -29,8 +29,9 @@ Se quiser contribuir mas não sabe por onde começar, aqui estão sugestões út
 3. Comente na Issue que você vai trabalhar nela (comente `@maintainers: vou trabalhar nisso`), assim evitamos duplicidade.  
 4. Crie uma branch com nome no formato: `<função>/<area>-<descrição>` — ex.: `feat/arch-test-documentation`.
     - função:
-        - <feat> Implementação de algo novo.
-        - <update> Correção de algo ja existente.
+        - `<feat>` Implementação de algo novo.
+        - `<update>` Atualização de algo ja existente.
+        - `<fix>` Correção de bugs ou erros.
     - area:
         - Nome da tarefa escolhida 
     - descrição:
