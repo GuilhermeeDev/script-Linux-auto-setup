@@ -39,7 +39,7 @@ Este projeto fornece ferramentas como:
 - O usuário pode editar arquivos de instalação de pacotes (necessario saber o nome da pacote).
 - O usuário pode instalar pacotes pré-definidos para uso básico do linux.
 - O usuário pode instalar pacotes para desenvolver/programar em linux.
-- 
+
 ### 2. **Adição de Repositórios Oficiais e extra oficiais**
 Cada distro possui repositórios dedicadas:
 - Ubuntu/Debian/Mint/Pop!_OS → Universe, Multiverse, Restricted ++ extra oficiais.
