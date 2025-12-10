@@ -3,28 +3,66 @@
 source ./config/functions.sh
 clear
 
-echo "=========================== MENU ==========================="
-echo -e "1. Instalar pacotes basicos para uso do linux.\n\
-2. Instalar pacotes de desenvolvedor para linux.\n\
-3. Adicionar repositorios com base na distro.\n\
-4. Instalar 'beautifulLinux'(beta)\n\
-5. Sair. "; read op
+# ======================= PALETA OPCIONAL =======================
+# Recomendo colocar isso no topo do menu ou no config de cores:
+GREEN="\e[0;32m"
+DARK_GREEN="\e[38;5;22m"
+NEON="\e[1;32m"
+LIGHT_GREEN="\e[92m"
+CYAN="\e[36m"
+WHITE="\e[97m"
+YELLOW="\e[93m"
+RESET="\e[0m"
+
+# ======================= FUNÇÃO DO MENU =========================
+menu() {
+    clear
+    echo -e "${DARK_GREEN}"
+cat << "EOF"
+ 
+███╗   ███╗ ███████╗ ███╗   ██╗ ██╗   ██╗
+████╗ ████║ ██╔════╝ ████╗  ██║ ██║   ██║
+██╔████╔██║ █████╗   ██╔██╗ ██║ ██║   ██║
+██║╚██╔╝██║ ██╔══╝   ██║╚██╗██║ ██║   ██║
+██║ ╚═╝ ██║ ███████╗ ██║ ╚████║ ╚██████╔╝
+╚═╝     ╚═╝ ╚══════╝ ╚═╝  ╚═══╝  ╚═════╝ 
+
+EOF
+echo -e "${RESET}"
+
+echo -e "${NEON}========================[ MENU PRINCIPAL ]========================${RESET}"
+echo -e "${GREEN}Selecione uma das opções abaixo:${RESET}"
+echo ""
+
+echo -e "${LIGHT_GREEN}[1]${RESET} Instalação de pacotes guiada (Perguntas de Sim/Não)"
+echo -e "${LIGHT_GREEN}[2]${RESET} Instalar pacotes básicos do sistema"
+echo -e "${LIGHT_GREEN}[3]${RESET} Instalar pacotes para programadores"
+echo -e "${LIGHT_GREEN}[4]${RESET} Adicionar repositórios conforme a distro"
+echo -e "${LIGHT_GREEN}[5]${RESET} Sair"
+echo ""
+
+read -p "$(echo -e "${YELLOW}Digite sua opção: ${RESET}")" op
 
 case "${op}" in
     1)
-        echo "=========================== Install BasicPackages ==========================="
-        basic_packages
+        instalacao_guiada
     ;;
     2)
-        echo "=========================== Install DevPackages ==========================="
-        dev_packages
+        basic_packages
     ;;
     3)
-        echo "=========================== Install Repositories ==========================="
-        ./config/add_repos.sh
+        dev_packages
     ;;
-    *)
+    4)
+        ./repos/menu_repos.sh
+    ;;
+    5|*)
+        echo -e "${RED}Saindo...${RESET}"
+        sleep 1
         clear
         exit 1
     ;;
 esac
+}
+
+menu
